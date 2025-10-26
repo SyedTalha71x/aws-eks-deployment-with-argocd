@@ -47,46 +47,39 @@ pipeline {
         stage('Security Scan - SonarQube') {
             parallel {
                 stage('Backend Security Scan') {
-    steps {
-        dir('application/server') {
-            withSonarQubeEnv('sonar-server') {
-                script {
-                    def scannerHome = tool 'SonarQube Scanner'
-                    sh """
-                        echo "Running SonarQube scan for backend..."
-                        npm install
-                        ${scannerHome}/bin/sonar-scanner \
-                          -Dsonar.projectKey=backend \
-                          -Dsonar.sources=. \
-                          -Dsonar.host.url=$SONAR_HOST_URL
-                    """
+                    steps {
+                        dir('application/server') {
+                            withSonarQubeEnv('sonar-server') {
+                                sh '''
+                                    echo "Running SonarQube scan for backend..."
+                                    npm install
+                                    sonar-scanner \
+                                      -Dsonar.projectKey=backend \
+                                      -Dsonar.sources=. \
+                                      -Dsonar.host.url=http://35.153.168.35:9000 \
+                                      
+                                '''
+                            }
+                        }
+                    }
                 }
-            }
-        }
-    }
-}
-
                 
                 stage('Frontend Security Scan') {
-    steps {
-        dir('application/client') {
-            withSonarQubeEnv('sonar-server') {
-                script {
-                    def scannerHome = tool 'SonarQube Scanner'
-                    sh """
-                        echo "Running SonarQube scan for frontend..."
-                        npm install --legacy-peer-deps
-                        ${scannerHome}/bin/sonar-scanner \
-                          -Dsonar.projectKey=frontend \
-                          -Dsonar.sources=. \
-                          -Dsonar.host.url=$SONAR_HOST_URL
-                    """
+                    steps {
+                        dir('application/client') {
+                            withSonarQubeEnv('sonar-server') {
+                                sh '''
+                                    echo "Running SonarQube scan for frontend..."
+                                    npm install --legacy-peer-deps
+                                    sonar-scanner \
+                                      -Dsonar.projectKey=frontend \
+                                      -Dsonar.sources=. \
+                                      -Dsonar.host.url=http://35.153.168.35:9000 \
+                                '''
+                            }
+                        }
+                    }
                 }
-            }
-        }
-    }
-}
-
             }
         }
         
