@@ -21,7 +21,7 @@ spec:
         - containerPort: 80
         env:
         - name: VITE_BACKEND_API_URL
-          value: "http://mern-backend-service"
+          value: "https://lummilo.syedtalhahussain.com/api"
         resources:
           requests:
             memory: "128Mi"
