@@ -2,4 +2,3 @@ resources:
   - backend
   - frontend
   - ingress.yaml
-  - secrets.yaml
