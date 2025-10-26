@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: lummilo-backend-container
-        image: 121775527711.dkr.ecr.us-east-1.amazonaws.com/lummilo-backend:12-976aead
+        image: 121775527711.dkr.ecr.us-east-1.amazonaws.com/lummilo-backend:13-6cc0d22
         ports:
         - containerPort: 4008
         env:
