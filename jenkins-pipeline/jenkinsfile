@@ -70,7 +70,7 @@ pipeline {
                             withSonarQubeEnv('sonar-server') {
                                 sh '''
                                     echo "Running SonarQube scan for frontend..."
-                                    npm install
+                                    npm install --legacy-peer-deps
                                     sonar-scanner \
                                       -Dsonar.projectKey=frontend \
                                       -Dsonar.sources=. \
@@ -108,7 +108,7 @@ pipeline {
                         dir('application/client') {  // FIXED: Correct directory
                             sh '''
                                 echo "Building frontend..."
-                                npm install
+                                npm install --legacy-peer-deps
                                 npm run build || echo "Build completed (no build script found)"
                                 
                                 echo "=========================================="
