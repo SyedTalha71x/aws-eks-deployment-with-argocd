@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: lummilo-frontend-container
-        image: 121775527711.dkr.ecr.us-east-1.amazonaws.com/lummilo-frontend:14-91fc9f8
+        image: 121775527711.dkr.ecr.us-east-1.amazonaws.com/lummilo-frontend:20-8317456
         ports:
         - containerPort: 80
         env:
